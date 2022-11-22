@@ -1,0 +1,149 @@
+\documentclass[12pt]{article}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{scribe}
+\usepackage{listings}
+
+% Color
+\usepackage[dvipsnames]{xcolor}
+
+% Hyperef 
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\urlstyle{same}
+
+% Bra-Ket Notation
+\usepackage{braket}
+
+% For boxes and such
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{lipsum}
+\mdfdefinestyle{MyFrame}{%
+    linecolor=blue,
+    outerlinewidth=2pt,
+    roundcorner=20pt,
+    innertopmargin=\baselineskip,
+    innerbottommargin=\baselineskip,
+    innerrightmargin=20pt,
+    innerleftmargin=20pt,
+    backgroundcolor=gray!50!white}
+
+\Scribe{Alan Nguyen}
+\Lecturer{Alexander Sushkov}
+\LectureNumber{1}
+\LectureDate{September 2022}
+\LectureTitle{Introduction}
+
+\lstset{style=mystyle}
+
+\begin{document}
+	\MakeScribeTop
+
+%#############################################################
+%#############################################################
+%#############################################################
+%#############################################################
+
+This lecture introduces the basics of Quantum Physics and Quantum Computing.
+
+\section{Introduction to Quantum Computing}
+
+\subsection{Information is Physical} 
+
+\textbf{\color{Orchid} \underline{Information is Physical.}} 
+\begin{itemize}
+    \item Bits are encoded in a physical system:
+    \begin{itemize}
+        \item Magnetized domains in a Hard Disk Drive
+        \item Neuron synapses connections in the human brain
+    \end{itemize}
+    \item Computations are carried out by a physical system.
+\end{itemize}
+
+The laws of physics \underline{constrain computability} and principles of computation \underline{constrains phenomena}.
+
+% Here's a citation~\cite{Kar84a}.
+
+\subsection{Landauer's Principle} 
+
+\textbf{Landauer's Principle:} To erase a bit of information, the entropy of environment must increase by at least $\delta S$ = $k_Bln(2)$. \\
+
+\noindent
+If an erasure process is isothermal, then the amout of heat equal to $T\delta S$ = $Tk_bln(2)$ must flow out of the system.
+
+\paragraph{A thought experiment: \href{https://en.wikipedia.org/wiki/Maxwell's_demon}{Maxwell's Demon}}. The Maxwell's Demon experiment shows that the existent of such a demon would violates the second law of thermodynamics. Therefore,
+
+\textbf{\color{Orchid} Erasing information $\Longleftrightarrow$ Increase in entropy $\Longleftrightarrow$ Irreversibility}
+
+\subsection{Physics is Quantum}
+
+The main ideas are:
+\begin{enumerate}
+    \item Quantum randomness exists.
+    \begin{itemize}
+        \item Classical physics is deterministic: probability reflects the lack of knowledge (certainty) about something.
+        \item Quantum measurement is fundamentally stochastic.
+    \end{itemize}
+    \item Heisenberg Uncertainty principle: $\Delta x \Delta p \ge \frac{1}{2}|\braket{[x, p]}|$ = $\frac{\hbar}{2}$.
+    \begin{itemize}
+        \item if we measure $x$, $\Delta x \rightarrow{} 0$, and that means $p \xrightarrow{} \infty$. This implies that \textbf{\color{Orchid} measurements disturbed the system}
+    \end{itemize}
+    \item No cloning theorem: quantum states cannot be copied (or else you will violates the Heisenberg Uncertainty Principle).
+    \item Bell's Theorem: Quantum Mechanics cannot be reproduced (simulated) by a classical, probabilistic, and local hidden variable theory. This imples that \textbf{\color{Orchid} quantum systems cannot be classicaly simulated.}
+
+\subsection{Classical and Quantum Computations}
+Classical interpretation of Computation:
+\begin{itemize}
+    \item \textbf{bit}: x = 0 or x = 1
+    \item \textbf{measure}: when get the value of x.
+    \item \textbf{N bits}: "01011...11010" is a binary number with length N.
+    \item \textbf{computation}: $x_i$ = "000...000" $\rightarrow{}$ some gates $\rightarrow{} x_f$ = "010...111"
+\end{itemize}
+
+Quantum interpretation of Computation:
+\begin{itemize}
+    \item \textbf{qubit}: state = $\ket{\psi}$ = $a \ket{0} + b \ket{1}$ where a and b are complex amplitudes, and $\ket{0}$ and $\ket{1}$ are basis vectors.
+
+    \item \textbf{measure}: $\ket{0}$ with probability $|a|^2$ and $\ket{1}$ with probability $|b|^2$. Normalisation of probability means that: $|a|^2 + |b|^2$ = 1.
+
+    \item \textbf{N qubits}: $\ket{\psi}$ = $\sum_{x=0}^{2^N - 1} a_x  \ket{x}$. Normalisation of probability means that $\sum_{x} |a_x|^2 = 1. $
+
+    \item \textbf{computation}: let $\ket{\psi_i}$ = $\ket{000...000} $. If we put this state through some (reversible) quantum circuits, we will have the final state $\ket{\psi_f}$ equal to some Unitary matrix $U$ acting on the initial state: $U \ket{\psi_i}$ = $\sum_{x=0}^{2^N - 1} a_x  \ket{x}$. From here, we can carry out the measurement (irreversible) to get $\ket{x}$ with probability equal to $|a_x|^2$.
+
+\end{itemize}
+
+\section{The Great News about Quantum Computing}
+Quantum computing may be a very powerful computational paradigm.
+\begin{itemize}
+    \item A quantum computer can simulate itself, and thus it can (maybe) efficiently simulate other quantum systems. 
+\end{itemize}
+
+Why do you want to use a quantum computing system? Answer: quantum algorithms might be a lot more efficient compare to classical algorithms. There are some quantum algorithms that have no equivalent classical versions of themselves. Examples of quantum algorithms:
+\begin{itemize}
+    \item Shor's Algorithm
+    \item Deutsch Algorithm
+    \item Grover's Algorithm
+\end{itemize}
+
+There is a minimum amount of qubits and other factors that would affect these algorithms (and also required to make them).
+    
+\end{enumerate}
+
+\nocite{*}
+
+\bibliographystyle{abbrv}           
+
+\bibliography{bib1}                
+
+
+
+%%%%%%%%%%% end of doc
+\end{document}
